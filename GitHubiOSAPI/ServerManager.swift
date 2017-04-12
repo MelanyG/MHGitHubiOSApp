@@ -12,32 +12,72 @@ class ServerManager {
     
     var token = GitHubAccessToken()
     var session: URLSession!
+    var authCode: String!
+
     //    var reachability =
     
     static let shared: ServerManager = {
         let instance = ServerManager()
+    
         return instance
     }()
     
-    func authorise(withUser user: String, andPassword password: String) {
-        token.user = user
-        token.password = password
-        
-        let urlString = URL(string: "\(Constants.ServerName)/\(Constants.Client_ID)/")
+
+    
+    func getAccessToken() {
+        let urlString = URL(string: "\(Constants.TokenUrl)")
         var urlRequest = URLRequest.init(url: urlString!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 30)
-        let input = "\(user):\(password)"
-        let data = input.data(using: .utf8)?.base64EncodedString()
-        urlRequest.setValue("Basic \(String(describing: data))", forHTTPHeaderField: "Authorization")
-        urlRequest.httpMethod = "POST"
+        let input = "client_id:\(Constants.Client_ID),client_secret:\(Constants.Client_Secret),code:\(authCode)"
+        let data = String(describing: input.data(using: .utf8)?.base64EncodedString())
+        urlRequest.addValue("Basic \(data)", forHTTPHeaderField: "Authorization")
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("application/x-www-form-urlencoded charset=utf-8", forHTTPHeaderField: "Content-Type")
         
-        session = URLSession()
+        session = URLSession(configuration: .default)
         let task = session.dataTask(with: urlRequest) {
             (data, response, error) -> Void in
             
             print("Task completed")
             if let data = data {
                 do {
-                    if let jsonResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary {
+                    if let returnData = String(data: data, encoding: .utf8) {
+                        print(returnData)
+                    }
+                } catch let error as NSError {
+                    print(error.localizedDescription)
+                }
+                
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            
+        }
+        task.resume()
+    }
+
+    
+    func authorise(withUser user: String, andPassword password: String) {
+        token.user = user
+        token.password = password
+        
+        let urlString = URL(string: "\(Constants.ServerName)/:\(Constants.Client_ID)")
+        var urlRequest = URLRequest.init(url: urlString!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 30)
+        let input = "client_id:\(Constants.Client_ID),client_secret:\(Constants.Client_Secret)"
+        let data = String(describing: input.data(using: .utf8)?.base64EncodedString())
+        urlRequest.setValue("Basic \(data)", forHTTPHeaderField: "Authorization")
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("application/x-www-form-urlencoded charset=utf-8", forHTTPHeaderField: "Content-Type")
+        
+        session = URLSession(configuration: .default)
+        let task = session.dataTask(with: urlRequest) {
+            (data, response, error) -> Void in
+            
+            print("Task completed")
+            if let data = data {
+                do {
+                    if let returnData = String(data: data, encoding: .utf8) {
+                        print(returnData)
                     }
                 } catch let error as NSError {
                     print(error.localizedDescription)
@@ -54,7 +94,8 @@ class ServerManager {
     
     
     fileprivate struct Constants {
-        static let ServerName = "https://github.com/login/oauth/authorize"
+        static let ServerName = "https://github.com/login/oauth/authorize/"
+        static let TokenUrl = "https://github.com/login/oauth/access_token/"
         static let LoginID = "client_id"
         static let PasswordID = "client_secret"
         static let Client_ID = "ea5679f04f9686902f10"

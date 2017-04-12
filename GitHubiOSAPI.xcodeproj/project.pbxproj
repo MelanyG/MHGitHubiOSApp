@@ -13,6 +13,7 @@
 		39ABA7291E9D104800D754BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39ABA7271E9D104800D754BA /* LaunchScreen.storyboard */; };
 		39ABA7311E9D107600D754BA /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ABA7301E9D107600D754BA /* LoginVC.swift */; };
 		39ABA7331E9D15B400D754BA /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ABA7321E9D15B400D754BA /* ServerManager.swift */; };
+		39ABA77E1E9E667300D754BA /* AuthorisationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ABA77D1E9E667300D754BA /* AuthorisationVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		39ABA72A1E9D104800D754BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39ABA7301E9D107600D754BA /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		39ABA7321E9D15B400D754BA /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
+		39ABA77D1E9E667300D754BA /* AuthorisationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorisationVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				39ABA7321E9D15B400D754BA /* ServerManager.swift */,
 				39ABA71E1E9D104800D754BA /* AppDelegate.swift */,
 				39ABA7221E9D104800D754BA /* Main.storyboard */,
+				39ABA77D1E9E667300D754BA /* AuthorisationVC.swift */,
 				39ABA7251E9D104800D754BA /* Assets.xcassets */,
 				39ABA7271E9D104800D754BA /* LaunchScreen.storyboard */,
 				39ABA72A1E9D104800D754BA /* Info.plist */,
@@ -142,6 +145,7 @@
 				39ABA7311E9D107600D754BA /* LoginVC.swift in Sources */,
 				39ABA7331E9D15B400D754BA /* ServerManager.swift in Sources */,
 				39ABA71F1E9D104800D754BA /* AppDelegate.swift in Sources */,
+				39ABA77E1E9E667300D754BA /* AuthorisationVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

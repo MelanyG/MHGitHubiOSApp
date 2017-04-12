@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,7 +28,7 @@
                                     <constraint firstAttribute="width" constant="80" id="dCy-XP-LIo"/>
                                     <constraint firstAttribute="height" constant="30" id="tIg-OJ-CBP"/>
                                 </constraints>
-                                <state key="normal" title="Login">
+                                <state key="normal" title="Sign in">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -52,7 +53,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="UPh-xA-cHS">
                                 <rect key="frame" x="62.5" y="40" width="250" height="150"/>
@@ -81,7 +82,43 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="120.8" y="108.39580209895054"/>
+            <point key="canvasLocation" x="-220" y="107"/>
+        </scene>
+        <!--AuthorisationVC-->
+        <scene sceneID="ls5-6u-Ejm">
+            <objects>
+                <viewController storyboardIdentifier="Authorisation" id="eWb-3V-kyy" customClass="AuthorisationVC" customModule="GitHubiOSAPI" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CNh-03-bYZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="F1o-RL-dvw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9tM-cF-6St">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="045-jh-g6k">
+                                <rect key="frame" x="16" y="20" width="343" height="647"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="eWb-3V-kyy" id="wGJ-qO-NZG"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="045-jh-g6k" firstAttribute="top" secondItem="CNh-03-bYZ" secondAttribute="bottom" id="UgO-Jw-OiC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="045-jh-g6k" secondAttribute="trailing" id="kfG-jG-RiK"/>
+                            <constraint firstItem="F1o-RL-dvw" firstAttribute="top" secondItem="045-jh-g6k" secondAttribute="bottom" id="m7O-Lj-6Z0"/>
+                            <constraint firstItem="045-jh-g6k" firstAttribute="leading" secondItem="9tM-cF-6St" secondAttribute="leadingMargin" id="yEe-AZ-Tf6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="045-jh-g6k" id="OCj-ns-0Nb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cGT-3B-AtA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="828" y="108"/>
         </scene>
     </scenes>
     <resources>
