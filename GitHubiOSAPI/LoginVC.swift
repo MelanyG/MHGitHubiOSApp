@@ -18,15 +18,19 @@ class LoginVC: UIViewController {
     
     @objc override func viewDidLoad() {
         super.viewDidLoad()
-//        addObserver(self, forKeyPath: #keyPath(ServerManager.shared.authCode), options: [.old, .new], context: nil)
+  
+        let nc = NotificationCenter.default
+        nc.addObserver(forName:authNotification,
+                       object:nil, queue:nil,
+                       using:catchNotification)
         
     }
     
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
+    func catchNotification(notification:Notification) -> Void {
+        print("Catch notification")
+        ServerManager.shared.getAccessToken()
+        NotificationCenter.default.removeObserver(self, name: authNotification, object: nil)
     }
     
     
@@ -34,7 +38,7 @@ class LoginVC: UIViewController {
     @IBAction func loginPressed(_ sender: Any) {
         
         if let login = loginTextView.text, let pass = passwordTextView.text {
-//            ServerManager.shared.authorise(withUser: login, andPassword: pass)
+
         }
         if (ServerManager.shared.authCode != nil) {
         
@@ -68,7 +72,7 @@ class LoginVC: UIViewController {
            
         }
     }
-    
+
     
     /*
      // MARK: - Navigation

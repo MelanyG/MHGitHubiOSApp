@@ -8,7 +8,11 @@
 
 import UIKit
 
+let authNotification = Notification.Name(rawValue:"AuthCodeReceived")
+
 class AuthorisationVC: UIViewController, UIWebViewDelegate {
+    
+
     
     @IBOutlet weak var webView: UIWebView!
     var token = GitHubAccessToken()
@@ -32,6 +36,11 @@ class AuthorisationVC: UIViewController, UIWebViewDelegate {
             if (request.url?.description.range(of:"code=")) != nil {
                 let code = request.url?.absoluteString.components(separatedBy:"=").last
                 ServerManager.shared.authCode = code
+
+                let nc = NotificationCenter.default
+                nc.post(name:authNotification,
+                        object: nil,
+                        userInfo: nil)
                 dismiss(animated: true, completion: nil)
                 return false
             }
