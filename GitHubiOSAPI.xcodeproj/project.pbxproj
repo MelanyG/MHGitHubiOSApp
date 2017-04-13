@@ -7,25 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39A1F5FA1E9FF154003C1DD1 /* DataSourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1F5F11E9FF154003C1DD1 /* DataSourse.swift */; };
+		39A1F5FB1E9FF154003C1DD1 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1F5F21E9FF154003C1DD1 /* JSONParser.swift */; };
+		39A1F5FC1E9FF154003C1DD1 /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1F5F31E9FF154003C1DD1 /* ServerManager.swift */; };
+		39A1F5FD1E9FF154003C1DD1 /* UIImageView +Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1F5F51E9FF154003C1DD1 /* UIImageView +Loading.swift */; };
+		39A1F5FE1E9FF154003C1DD1 /* AuthorisationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1F5F71E9FF154003C1DD1 /* AuthorisationVC.swift */; };
+		39A1F5FF1E9FF154003C1DD1 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1F5F81E9FF154003C1DD1 /* LoginVC.swift */; };
+		39A1F6001E9FF154003C1DD1 /* RepoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1F5F91E9FF154003C1DD1 /* RepoVC.swift */; };
 		39ABA71F1E9D104800D754BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ABA71E1E9D104800D754BA /* AppDelegate.swift */; };
 		39ABA7241E9D104800D754BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39ABA7221E9D104800D754BA /* Main.storyboard */; };
 		39ABA7261E9D104800D754BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39ABA7251E9D104800D754BA /* Assets.xcassets */; };
 		39ABA7291E9D104800D754BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39ABA7271E9D104800D754BA /* LaunchScreen.storyboard */; };
-		39ABA7311E9D107600D754BA /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ABA7301E9D107600D754BA /* LoginVC.swift */; };
-		39ABA7331E9D15B400D754BA /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ABA7321E9D15B400D754BA /* ServerManager.swift */; };
-		39ABA77E1E9E667300D754BA /* AuthorisationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ABA77D1E9E667300D754BA /* AuthorisationVC.swift */; };
+		39ABA7861E9FAA8100D754BA /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ABA7851E9FAA8100D754BA /* CircleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		39A1F5F11E9FF154003C1DD1 /* DataSourse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourse.swift; sourceTree = "<group>"; };
+		39A1F5F21E9FF154003C1DD1 /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
+		39A1F5F31E9FF154003C1DD1 /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
+		39A1F5F51E9FF154003C1DD1 /* UIImageView +Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView +Loading.swift"; sourceTree = "<group>"; };
+		39A1F5F71E9FF154003C1DD1 /* AuthorisationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorisationVC.swift; sourceTree = "<group>"; };
+		39A1F5F81E9FF154003C1DD1 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		39A1F5F91E9FF154003C1DD1 /* RepoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoVC.swift; sourceTree = "<group>"; };
 		39ABA71B1E9D104800D754BA /* GitHubiOSAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubiOSAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39ABA71E1E9D104800D754BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		39ABA7231E9D104800D754BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		39ABA7251E9D104800D754BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39ABA7281E9D104800D754BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		39ABA72A1E9D104800D754BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		39ABA7301E9D107600D754BA /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		39ABA7321E9D15B400D754BA /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
-		39ABA77D1E9E667300D754BA /* AuthorisationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorisationVC.swift; sourceTree = "<group>"; };
+		39ABA7851E9FAA8100D754BA /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +49,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39A1F5F01E9FF154003C1DD1 /* AppLayers */ = {
+			isa = PBXGroup;
+			children = (
+				39A1F5F11E9FF154003C1DD1 /* DataSourse.swift */,
+				39A1F5F21E9FF154003C1DD1 /* JSONParser.swift */,
+				39A1F5F31E9FF154003C1DD1 /* ServerManager.swift */,
+			);
+			path = AppLayers;
+			sourceTree = "<group>";
+		};
+		39A1F5F41E9FF154003C1DD1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				39A1F5F51E9FF154003C1DD1 /* UIImageView +Loading.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		39A1F5F61E9FF154003C1DD1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				39A1F5F71E9FF154003C1DD1 /* AuthorisationVC.swift */,
+				39A1F5F81E9FF154003C1DD1 /* LoginVC.swift */,
+				39A1F5F91E9FF154003C1DD1 /* RepoVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		39ABA7121E9D104800D754BA = {
 			isa = PBXGroup;
 			children = (
@@ -58,11 +96,12 @@
 		39ABA71D1E9D104800D754BA /* GitHubiOSAPI */ = {
 			isa = PBXGroup;
 			children = (
-				39ABA7301E9D107600D754BA /* LoginVC.swift */,
-				39ABA7321E9D15B400D754BA /* ServerManager.swift */,
+				39A1F5F01E9FF154003C1DD1 /* AppLayers */,
+				39A1F5F41E9FF154003C1DD1 /* Extensions */,
+				39A1F5F61E9FF154003C1DD1 /* ViewControllers */,
 				39ABA71E1E9D104800D754BA /* AppDelegate.swift */,
 				39ABA7221E9D104800D754BA /* Main.storyboard */,
-				39ABA77D1E9E667300D754BA /* AuthorisationVC.swift */,
+				39ABA7851E9FAA8100D754BA /* CircleView.swift */,
 				39ABA7251E9D104800D754BA /* Assets.xcassets */,
 				39ABA7271E9D104800D754BA /* LaunchScreen.storyboard */,
 				39ABA72A1E9D104800D754BA /* Info.plist */,
@@ -142,10 +181,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39ABA7311E9D107600D754BA /* LoginVC.swift in Sources */,
-				39ABA7331E9D15B400D754BA /* ServerManager.swift in Sources */,
+				39A1F6001E9FF154003C1DD1 /* RepoVC.swift in Sources */,
+				39A1F5FC1E9FF154003C1DD1 /* ServerManager.swift in Sources */,
+				39ABA7861E9FAA8100D754BA /* CircleView.swift in Sources */,
+				39A1F5FF1E9FF154003C1DD1 /* LoginVC.swift in Sources */,
+				39A1F5FD1E9FF154003C1DD1 /* UIImageView +Loading.swift in Sources */,
+				39A1F5FA1E9FF154003C1DD1 /* DataSourse.swift in Sources */,
+				39A1F5FB1E9FF154003C1DD1 /* JSONParser.swift in Sources */,
+				39A1F5FE1E9FF154003C1DD1 /* AuthorisationVC.swift in Sources */,
 				39ABA71F1E9D104800D754BA /* AppDelegate.swift in Sources */,
-				39ABA77E1E9E667300D754BA /* AuthorisationVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

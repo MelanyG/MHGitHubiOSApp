@@ -16,6 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if let token = UserDefaults.standard.object(forKey: "acc_token")  {
+            ServerManager.shared.token.authToken = token as? String
+          
+            
+        }
+        UINavigationBar.appearance().barTintColor = UIColor(colorLiteralRed: 0/255, green: 104/255, blue: 209/255, alpha: 1)
+        UINavigationBar.appearance().tintColor = UIColor(colorLiteralRed: 87/255, green: 96/255, blue: 104/255, alpha: 1)
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor(colorLiteralRed: 87/255, green: 96/255, blue: 104/255, alpha: 1)]
         return true
     }
 
@@ -42,5 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    
 }
 
