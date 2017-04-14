@@ -7,12 +7,9 @@
 //
 
 import Foundation
-
-
+import UIKit
 
 class JSONParser {
-    
-    
     
     func parseUserInfo(withdata data: NSDictionary) -> User {
         let user = User()
@@ -34,6 +31,9 @@ class JSONParser {
         if let following = data["following"] {
             user.following = following as! Int
         }
+        if let publicRepo = data["public_repos"] {
+            user.publicRepo = publicRepo as! Int
+        }
         return user
     }
     
@@ -43,6 +43,7 @@ class JSONParser {
         for dic in array {
             
             let repo = parseRepo(withDict: dic as! NSDictionary)
+            DataSource.shared.user.starsCount += repo.starsCount
             repositories.append(repo)
         }
         return repositories
@@ -66,7 +67,7 @@ class JSONParser {
             repo.forks = forks as! Int
         }
         if let description = dict["description"] as? String {
-                repo.description = description 
+            repo.description = description
         }
         if let forks = dict["forks_count"] {
             repo.forks = forks as! Int
@@ -82,7 +83,43 @@ class JSONParser {
         }
         return repo
     }
-  
+    
+    func parseAuthor(fromDic dic:NSDictionary, intoCommit commit:Commit) -> Commit {
+        if let committer = dic["committer"] {
+            
+            if let name = (committer as! NSDictionary)["name"] {
+                commit.author = name as! String
+            }
+            if let date = (committer as! NSDictionary)["date"] as? String {
+                commit.cratedDate = df.date(from: date)!
+            }
+        }
+        if let message = dic["message"] {
+            commit.message = message as! String
+        }
+        return commit
+    }
+    
+    func parseCommits(fromArray array: NSArray) ->[Commit] {
+        var commits = [Commit]()
+        for item in array {
+            let commit = Commit()
+            if let comAv = (item as! NSDictionary)["commiter"] as? NSDictionary{
+                if let avatar = comAv["avatar_url"] as? String {
+                    commit.authorAvatar = avatar
+                }
+            }
+            if let com = (item as! NSDictionary)["commit"] {
+                commits.append(parseAuthor(fromDic: com as! NSDictionary, intoCommit: commit))
+            }
+            
+            
+        }
+        return commits
+    }
+    
+    
+    
 }
 
 class User {
@@ -93,11 +130,12 @@ class User {
     var avatarURL = ""
     var followers: Int = 0
     var following: Int = 0
-    
+    var publicRepo = 0
+    var starsCount = 0
 }
 
 class Repository {
-
+    
     var repoName: String = ""
     var language: String = ""
     var id: Int!
@@ -107,10 +145,16 @@ class Repository {
     var watchers = 0
     var starsCount = 0
     var lastUpdate: Date!
+    var commits = [Commit]()
 }
 
 class Commit {
-
+    var author = ""
+    var authorAvatar = ""
+    var cratedDate = Date()
+    var message = ""
+    var imageForAvatar: UIImage?
+    
 }
 
 let df : DateFormatter = {

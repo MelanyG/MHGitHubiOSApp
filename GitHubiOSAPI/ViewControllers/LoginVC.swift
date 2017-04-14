@@ -9,9 +9,9 @@
 import UIKit
 
 class LoginVC: UIViewController {
-
+    
     @IBOutlet weak var signingStackView: UIStackView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,19 +21,29 @@ class LoginVC: UIViewController {
                        using:catchNotification)
         
         ServerManager.shared.delegate = self
-
-        if (ServerManager.shared.token.authToken != nil) {
-            loadUserData()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                [weak self] in
-                    self?.loadRepositoryVC()
+        ServerManager.shared.connectedToInternet() {
+            [weak self] (connected: Bool) in
+            if connected {
+                
+                if (ServerManager.shared.token.authToken != nil) {
+                    self?.loadUserData()
+                    
+                } else {
+                    self?.signingStackView.isHidden = false
+                }
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
+                    let alert = UIAlertController(title: "Error", message: "Internet connection error", preferredStyle: .alert)
+                    self?.present(alert, animated: true)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        abort()
+                    }
+                }
             }
-        
-        } else {
-            signingStackView.isHidden = false
         }
-        
     }
+    
+    
     
     
     func catchNotification(notification:Notification) -> Void {
@@ -41,15 +51,19 @@ class LoginVC: UIViewController {
         ServerManager.shared.getAccessToken()
         NotificationCenter.default.removeObserver(self, name: authNotification, object: nil)
         loadRepositoryVC()
-
+        
     }
     
     
+    @IBAction func signUpPressed(_ sender: Any) {
+        login()
+    }
+    
     
     @IBAction func loginPressed(_ sender: Any) {
-
-            login()
-
+        
+        login()
+        
     }
     
     func login() {
@@ -97,6 +111,18 @@ extension LoginVC: ServerManagerDelegate {
             self?.login()
         }
     }
+    func loadedRepositors() {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            [weak self] in
+            self?.loadRepositoryVC()
+        }
+    }
+    
+    func signedOutDone() {
+        signingStackView.isHidden = false
+        DataSource.shared.repositories = [Repository]()
+        DataSource.shared.user = User()
+    }
 }
 
 
@@ -105,8 +131,8 @@ extension LoginVC: ServerManagerDelegate {
 //func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //    if segue.identifier == "LoginSegue" {
 //        let vc = segue.destination as! AuthorisationVC
-//        
-//        
+//
+//
 //    }
 
 //}

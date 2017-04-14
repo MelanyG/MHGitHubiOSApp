@@ -12,6 +12,8 @@ protocol ServerManagerDelegate {
     
     func gotAccessToken()
     func updateAccToken()
+    func loadedRepositors()
+    func signedOutDone()
 }
 
 class ServerManager: NSObject {
@@ -134,7 +136,7 @@ class ServerManager: NSObject {
                             self?.token.authToken = nil
                             onCompletion(nil)
                             self?.delegate?.updateAccToken()
-
+                            
                         } else {
                             if let name = jsonResult["name"] {
                                 self?.token.userName = name as! String
@@ -146,7 +148,7 @@ class ServerManager: NSObject {
                                 self?.token.avatarURL = avatar as! String
                             }
                             onCompletion((self?.parser.parseUserInfo(withdata: (jsonResult)))!)
-
+                            
                         }
                     }
                 } catch let error as NSError {
@@ -174,7 +176,8 @@ class ServerManager: NSObject {
             if let data = data {
                 do {
                     if let jsonResult = try JSONSerialization.jsonObject(with: data , options: JSONSerialization.ReadingOptions.mutableContainers) as? NSArray {
-                       DataSource.shared.repositories = (self?.parser.parseRepositories(fromArray: jsonResult))!
+                        DataSource.shared.repositories = (self?.parser.parseRepositories(fromArray: jsonResult))!
+                        self?.delegate?.loadedRepositors()
                     }
                 } catch let error as NSError {
                     print(error.localizedDescription)
@@ -187,17 +190,85 @@ class ServerManager: NSObject {
             
         }
         task.resume()
-
+        
     }
     
+    func getCommitsForRepository(withRepo repo:String, onCompletion:@escaping (_ result: [Commit]?) -> Void) {
+        
+        let url = URL(string:"\(Constants.RepoCommitsUrl)\(token.userLogin!)/\(repo)/commits")
+        var urlRequest = URLRequest.init(url: url!)
+        
+        urlRequest.httpMethod = "GET"
+        session = URLSession(configuration: .default)
+        let task = session.dataTask(with: urlRequest) {
+            [weak self] (data, response, error) -> Void in
+            
+            if let data = data {
+                do {
+                    if let jsonResult = try JSONSerialization.jsonObject(with: data , options: JSONSerialization.ReadingOptions.mutableContainers) as? NSArray {
+                        onCompletion(self?.parser.parseCommits(fromArray: jsonResult) )
+                        
+                    }
+                } catch let error as NSError {
+                    print(error.localizedDescription)
+                }
+                
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+            
+            
+        }
+        task.resume()
+    }
+    
+    func connectedToInternet(onCompletion:@escaping (_ connected: Bool) -> Void) {
+        let urlString = "https://www.google.com/"
+        let url = URL(string:urlString)
+        
+        var request = URLRequest.init(url: url!)
+        request.httpMethod = "HEAD"
+        
+        session = URLSession(configuration: .default)
+        let task = session.dataTask(with: request) {
+            (data, response, error) -> Void in
+            if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 200 {
+                    onCompletion(true)
+                } else {
+                    onCompletion(false)
+                }
+            }
+            if (error != nil) {
+                onCompletion(false )
+            }
+            
+        }
+        task.resume()
+        
+    }
     
     fileprivate struct Constants {
         static let AuthoriseUrl = "https://github.com/login/oauth/authorize/"
         static let TokenUrl = "https://github.com/login/oauth/access_token/"
         static let UserDataUrl = "https://api.github.com/user?access_token="
+        static let RepoCommitsUrl = "https://api.github.com/repos/"
         static let RepoURL = "https://api.github.com/users/"
         static let Client_ID = "ea5679f04f9686902f10"
         static let Client_Secret = "081545df6579be8f2d37caeff958a5b21e91b6f1"
+    }
+    
+    func signOutAsUser() {
+        
+        let cookies = HTTPCookieStorage.shared
+        
+        for cookie in HTTPCookieStorage.shared.cookies! {
+            cookies.deleteCookie(cookie)
+        }
+        UserDefaults.standard.removeObject(forKey: "acc_token")
+        if delegate != nil {
+            delegate?.signedOutDone()
+        }
     }
     
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		366438001EA027E000157A0E /* CommitsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366437FF1EA027E000157A0E /* CommitsTVC.swift */; };
 		39A1F5FA1E9FF154003C1DD1 /* DataSourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1F5F11E9FF154003C1DD1 /* DataSourse.swift */; };
 		39A1F5FB1E9FF154003C1DD1 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1F5F21E9FF154003C1DD1 /* JSONParser.swift */; };
 		39A1F5FC1E9FF154003C1DD1 /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A1F5F31E9FF154003C1DD1 /* ServerManager.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		366437FF1EA027E000157A0E /* CommitsTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommitsTVC.swift; sourceTree = "<group>"; };
 		39A1F5F11E9FF154003C1DD1 /* DataSourse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourse.swift; sourceTree = "<group>"; };
 		39A1F5F21E9FF154003C1DD1 /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		39A1F5F31E9FF154003C1DD1 /* ServerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 		39A1F5F61E9FF154003C1DD1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				366437FF1EA027E000157A0E /* CommitsTVC.swift */,
 				39A1F5F71E9FF154003C1DD1 /* AuthorisationVC.swift */,
 				39A1F5F81E9FF154003C1DD1 /* LoginVC.swift */,
 				39A1F5F91E9FF154003C1DD1 /* RepoVC.swift */,
@@ -181,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				366438001EA027E000157A0E /* CommitsTVC.swift in Sources */,
 				39A1F6001E9FF154003C1DD1 /* RepoVC.swift in Sources */,
 				39A1F5FC1E9FF154003C1DD1 /* ServerManager.swift in Sources */,
 				39ABA7861E9FAA8100D754BA /* CircleView.swift in Sources */,

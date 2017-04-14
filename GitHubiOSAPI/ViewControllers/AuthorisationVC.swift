@@ -13,6 +13,7 @@ let authNotification = Notification.Name(rawValue:"AuthCodeReceived")
 class AuthorisationVC: UIViewController, UIWebViewDelegate {
     
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var webView: UIWebView!
     var token = GitHubAccessToken()
@@ -27,11 +28,13 @@ class AuthorisationVC: UIViewController, UIWebViewDelegate {
         request = URLRequest(url: url!)
         webView.delegate = self
         webView.loadRequest(request)
+        webView.isHidden = true
+        print("auth*****")
         
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-    
+        print("web*****")
         if token.authCode == nil {
             if (request.url?.description.range(of:"code=")) != nil {
                 let code = request.url?.absoluteString.components(separatedBy:"=").last
@@ -48,6 +51,11 @@ class AuthorisationVC: UIViewController, UIWebViewDelegate {
         }
         
         return true
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        webView.isHidden = false
+        activityIndicator.stopAnimating()
     }
 
     override func didReceiveMemoryWarning() {

@@ -15,35 +15,36 @@ class RepoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var qtyReposits: UILabel!
     @IBOutlet weak var stars: UILabel!
-    
+    var selectedRow = 0
     
     var repositories = [Repository]()
     override func viewDidLoad() {
         super.viewDidLoad()
         userAvatar.setImageWithURL(url: DataSource.shared.user.avatarURL)
         userName.text = DataSource.shared.user.name
-        qtyReposits.text = "5"
-        stars.text = "1"
-        
+        qtyReposits.text = "\(DataSource.shared.user.publicRepo)"
+        stars.text = "\(DataSource.shared.user.starsCount)"
+        navigationItem.hidesBackButton = true
         repositories = DataSource.shared.repositories
-
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign out", style: .plain, target: self, action: #selector(signOut))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
           self.title = DataSource.shared.user.login
-        // Do any additional setup after loading the view.
+        self.automaticallyAdjustsScrollViewInsets = false
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
+    func signOut() {
+        ServerManager.shared.signOutAsUser()
+        self.navigationController?.popToRootViewController(animated: true)
+    }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+
         return repositories.count
     }
     
@@ -54,8 +55,30 @@ class RepoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return cell!
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedRow = indexPath.row
+        ServerManager.shared.getCommitsForRepository(withRepo: repositories[indexPath.row].repoName) {
+            [weak self](result: [Commit]?) in
+            DataSource.shared.repositories[indexPath.row].commits = result!
+            self?.instantiateCommits()
+        }
+        
+        
+    }
     
-
+    func tableView( _ tableView: UITableView, heightForHeaderInSection section: Int ) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
+    }
+    
+    func instantiateCommits() {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            let sb = UIStoryboard.init(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "CommitsVC") as! CommitsTVC
+            vc.commits = DataSource.shared.repositories[self.selectedRow].commits
+            vc.nameOfRepo = DataSource.shared.repositories[self.selectedRow].repoName
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 class RepoCell: UITableViewCell {
@@ -69,8 +92,14 @@ class RepoCell: UITableViewCell {
     func configure(withRepo repo:Repository) {
         repoName.text = repo.repoName
         repoLanguage.text = repo.language
-        repoFork.text = "\(repo.forks)"
-        
+        if repo.forks == 0 {
+            repoFork.isHidden = true
+            forkIV.isHidden = true
+        } else {
+            repoFork.isHidden = false
+            forkIV.isHidden = false
+            repoFork.text = "\(repo.forks)"
+        }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy"
         lastUpdate.text = "Updated on \(dateFormatter.string(from: repo.lastUpdate))"
