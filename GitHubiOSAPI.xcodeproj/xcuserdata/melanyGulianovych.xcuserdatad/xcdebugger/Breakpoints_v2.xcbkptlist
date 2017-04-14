@@ -90,7 +90,7 @@
                   moduleName = "GitHubiOSAPI"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/melanyGulianovych/Documents/Projects/Git/GitHubiOSAPI/AppLayers/JSONParser.swift"
-                  timestampString = "513852444.784178"
+                  timestampString = "513885574.857703"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "108"
@@ -105,7 +105,7 @@
                   moduleName = "GitHubiOSAPI"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/melanyGulianovych/Documents/Projects/Git/GitHubiOSAPI/AppLayers/JSONParser.swift"
-                  timestampString = "513852444.787417"
+                  timestampString = "513885574.861053"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "108"
@@ -170,7 +170,7 @@
                   moduleName = "GitHubiOSAPI"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/melanyGulianovych/Documents/Projects/Git/GitHubiOSAPI/AppLayers/ServerManager.swift"
-                  timestampString = "513852444.803872"
+                  timestampString = "513885574.872886"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "235"
@@ -185,7 +185,7 @@
                   moduleName = "GitHubiOSAPI"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/melanyGulianovych/Documents/Projects/Git/GitHubiOSAPI/AppLayers/ServerManager.swift"
-                  timestampString = "513852444.805519"
+                  timestampString = "513885574.874417"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "235"
@@ -240,6 +240,22 @@
             startingLineNumber = "36"
             endingLineNumber = "36"
             landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GitHubiOSAPI/CircleView.swift"
+            timestampString = "513885572.116779"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "draw(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
